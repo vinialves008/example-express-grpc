@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+message Address {
+    int32 id = 1;
+    string zipCode = 2;
+    string street = 3;
+    string neighborhood = 4;
+    string numberHouse = 5;
+    string complement = 6;
+    string referencePoint = 7;
+    int32 cityId = 8;
+}
+
+message NewAddress {
+    string zipCode = 1;
+    string street = 2;
+    string neighborhood = 3;
+    string numberHouse = 4;
+    string complement = 5;
+    string referencePoint = 6;
+    int32 cityId = 7;
+}
+
+service AddressService {
+    rpc List (Empty) returns (AddressList) {}
+    rpc Create(NewAddress) returns (Address) {}
+}
+
+message Empty {}
+
+message AddressList {
+   repeated Address addresses = 1;
+}
+
+
+
+

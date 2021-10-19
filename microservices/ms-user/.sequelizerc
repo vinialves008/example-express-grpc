@@ -1,0 +1,10 @@
+const { resolve } = require('path');
+
+require('dotenv/config');
+
+module.exports = {
+  config: resolve(process.env.MODE, 'config', 'database.js'),
+  'models-path': resolve(process.env.MODE, 'api', 'models'),
+  'migrations-path': resolve(process.env.MODE, 'database', 'migrations'),
+  'seeders-path': resolve(process.env.MODE, 'database', 'seeds'),
+};

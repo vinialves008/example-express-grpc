@@ -1,0 +1,25 @@
+FROM node:14.10.0
+
+WORKDIR /ms-user
+
+COPY . /ms-user
+
+COPY ./package.json /ms-user
+
+COPY ./ecosystem.config.js /ms-user
+
+COPY .env /ms-user/.env
+
+RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+
+RUN echo "America/Sao_Paulo" > /etc/timezone
+
+RUN npm install pm2 -g
+
+RUN yarn install
+
+RUN yarn build
+
+EXPOSE 3000
+
+CMD ["pm2-runtime", "./prod/server.js"]

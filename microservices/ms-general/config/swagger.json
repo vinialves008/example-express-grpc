@@ -1,0 +1,160 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "MEI Docs API",
+    "description": "Documentação de API desenvolvida em NodeJs"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "host": "localhost",
+  "securityDefinitions": {
+    "Bearer": {
+      "description": "Para acessar a API, um token JWT válido deve ser passado.\nUm token JWT válido é gerado pelo MS ASSOCIATE e retornado como resposta a uma requisição de login.\nA seguinte sintaxe deve ser usada: Bearer TOKEN",
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "basePath": "/api/v1/general",
+  "tags": [
+    {
+      "name": "Endereço",
+      "description": "Informações sobre endereços"
+    },
+    {
+      "name": "Contato",
+      "description": "Informações sobre Contatos"
+    }
+  ],
+  "paths": {
+    "/address": {
+      "post": {
+        "tags": [
+          "Endereço"
+        ],
+        "description": "Salva um Endereço",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do Endereço",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "address"
+              ],
+              "properties": {
+                "zipCode": {
+                  "type": "string"
+                },
+                "street": {
+                  "type": "string"
+                },
+                "neighborhood": {
+                  "type": "string"
+                },
+                "numberHouse": {
+                  "type": "string"
+                },
+                "complement": {
+                  "type": "string"
+                },
+                "referencePoint": {
+                  "type": "string"
+                },
+                "cityId": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/address/states": {
+      "get": {
+        "tags": [
+          "Endereço"
+        ],
+        "description": "Busca todos os Estados",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/address/states/{state}/cities": {
+      "get": {
+        "tags": [
+          "Endereço"
+        ],
+        "description": "Busca todas as cidade do Estado",
+        "parameters": [
+          {
+            "name": "state",
+            "in": "path",
+            "description": "ID do Estado",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/contact": {
+      "post": {
+        "tags": [
+          "Contato"
+        ],
+        "description": "Salva um Contato",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do Contato",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "address"
+              ],
+              "properties": {
+                "phone": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "default": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/contact/{id}": {
+      "get": {
+        "tags": [
+          "Contato"
+        ],
+        "description": "Busca um Contato",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do Contato",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  }
+}

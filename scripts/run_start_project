@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DIR=$(pwd);
+
+for repo in microservices/ms-*; do
+    echo -e "Entrando do repositório $repo";
+    yarn install;
+    yarn migrate;
+    yarn seed;
+done
+
+docker-compose up
+
+exit 0;

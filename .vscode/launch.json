@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ms-user",
+      "type": "node",
+      "request": "attach",
+      "protocol": "inspector",
+      "restart": true,
+      "port": 5000,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/microservices/ms-user",
+      "remoteRoot": "/ms-user",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+    },
+    {
+      "name": "ms-general",
+      "type": "node",
+      "request": "attach",
+      "protocol": "inspector",
+      "restart": true,
+      "port": 5001,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/microservices/ms-general",
+      "remoteRoot": "/ms-general",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+    }
+  ]
+}
