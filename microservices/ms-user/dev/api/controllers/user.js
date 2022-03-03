@@ -61,8 +61,6 @@ const createUsers = async (params) => {
       const { id: addressesId } = address;
       const pass = await bcrypt.hash(password, saltRounds);
 
-      console.log(addressesId);
-
       const user = await User.create(
         {
           code,

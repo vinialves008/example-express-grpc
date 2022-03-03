@@ -7,7 +7,7 @@
 # Models
 ## Camada responsável pelos modelos e relacionamentos do banco de dados.
 
-# Resources
+# Routers
 ## Camada responsável por receber as requisições dos usuários e direcionar para as validações e os controladores responsáveis pelas solicitações do sistema.
 
 # Validations

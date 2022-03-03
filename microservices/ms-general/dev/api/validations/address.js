@@ -35,19 +35,24 @@ const addressSchema = yup.object().shape({
 
 const listCitiesInState = async (req, res, next) => {
   const errors = [];
-  const { stateId } = req.params;
+  const params = {
+    ...req.params,
+    ...req.query
+  };
+  const { stateId } = params;
 
   try {
-    if (!idValid(stateId)) {
+    if (stateId && !idValid(stateId)) {
       errors.push(new FieldMessage('stateId', 'Parametro deve ser do tipo inteiro'));
       throw new ErrorsException(errors);
+
+      const state = await State.findByPk(stateId);
+      if (!state) {
+        errors.push(new FieldMessage('stateId', 'Não existe estado com esse id'));
+        throw new ErrorsException(errors);
+      }
     }
 
-    const state = await State.findByPk(stateId);
-    if (!state) {
-      errors.push(new FieldMessage('stateId', 'Não existe estado com esse id'));
-      throw new ErrorsException(errors);
-    }
 
     if (errors.length > 0) {
       throw new ErrorsException(errors);
