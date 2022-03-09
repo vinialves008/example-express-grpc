@@ -1,13 +1,16 @@
 #!/bin/bash
 
-DIR=$(pwd);
+docker-compose up -d
 
-for repo in microservices/ms-*; do
-    echo -e "Entrando do repositório $repo";
-    yarn install;
-    yarn migrate;
-    yarn seed;
-done
+docker exec -it ms-user bash -c "yarn install"
+docker exec -it ms-user bash -c "yarn migrate"
+docker exec -it ms-user bash -c "yarn seed"
+
+docker exec -it ms-general -c "yarn install"
+docker exec -it ms-general -c "yarn migrate"
+docker exec -it ms-general -c "yarn seed"
+
+docker-compose -f 'docker-compose.yml'  -p 'example-express-grpc' down
 
 docker-compose up
 

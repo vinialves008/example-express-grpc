@@ -58,7 +58,7 @@ module.exports = () => {
 
     // Inclusão de documentação Swagger
     app.use(
-        `${process.env.BASE_URL || '/api-docs'}/api-docs`,
+        `${process.env.BASE_URL || '/api-docs/'}/api-docs/`,
         swaggerUi.serve,
         swaggerUi.setup(specs)
     );

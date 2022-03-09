@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import ValidateException from '../exceptions/validate';
+import ValidateException from '../utils/validate';
 import controller from '../controllers/contact';
 import validations from '../validations/contact';
 
@@ -40,11 +40,34 @@ router.get('/:id', [validations.findOneContact], async(req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /contact:
+ *   post:
+ *     tags:
+ *     - Contact
+ *     summary: Adicionar um contato.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             $ref: '#/components/schemas/ContactNewDTO'
+ *     responses:
+ *       201:
+ *         description: Contato adicionado com sucesso.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               $ref: '#/components/schemas/Contact'
+ */
 router.post('', [validations.addContact], async(req, res) => {
     try {
         const params = req.body;
         const result = await controller.addContact(params);
-        res.status(200).send(result);
+        res.status(201).send(result);
     } catch (e) {
         console.log(e);
         res

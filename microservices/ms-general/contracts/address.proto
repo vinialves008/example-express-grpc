@@ -1,5 +1,33 @@
 syntax = "proto3";
 
+service AddressService {
+    rpc List (Empty) returns (AddressList) {}
+    rpc Create(NewAddress) returns (Address) {}
+    rpc FindById(Id) returns (Address) {}
+}
+
+message Empty {}
+
+message AddressList {
+   repeated Address addresses = 1;
+}
+
+message State {
+    int32 id = 1;
+    string name = 2;
+    string initials = 3;
+}
+
+message City {
+    int32 id = 1;
+    string name = 2;
+    State state = 3;
+}
+
+message Id {
+    int32 id = 1;
+}
+
 message Address {
     int32 id = 1;
     string zipCode = 2;
@@ -8,7 +36,7 @@ message Address {
     string numberHouse = 5;
     string complement = 6;
     string referencePoint = 7;
-    int32 cityId = 8;
+    City city = 8;
 }
 
 message NewAddress {
@@ -20,18 +48,6 @@ message NewAddress {
     string referencePoint = 6;
     int32 cityId = 7;
 }
-
-service AddressService {
-    rpc List (Empty) returns (AddressList) {}
-    rpc Create(NewAddress) returns (Address) {}
-}
-
-message Empty {}
-
-message AddressList {
-   repeated Address addresses = 1;
-}
-
 
 
 

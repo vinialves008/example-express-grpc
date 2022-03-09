@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import ValidateException from '../exceptions/validate';
+import ValidateException from '../utils/validate';
 import controller from '../controllers/state';
 
 const express = require('express');
@@ -11,7 +11,7 @@ const router = express.Router();
  * /state:
  *   get:
  *     tags:
- *     - Address
+ *     - State
  *     summary: Buscar estados.
  *     responses:
  *       200:

@@ -1,6 +1,5 @@
 import 'dotenv/config';
-import ValidateException from '../exceptions/validate';
-import FieldMessageException from '../exceptions/fieldmessage';
+import { ValidateException } from '../utils/validate';
 import controller from '../controllers/country';
 import validations from '../validations/country';
 
@@ -8,6 +7,17 @@ const express = require('express');
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /country:
+ *   get:
+ *     tags:
+ *     - Country
+ *     summary: Buscar países.
+ *     responses:
+ *       200:
+ *         description: Lista de países.
+ */
 router.get('', async(req, res) => {
     const params = {
         ...req.params,

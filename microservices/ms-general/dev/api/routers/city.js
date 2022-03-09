@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import ValidateException from '../exceptions/validate';
+import ValidateException from '../utils/validate';
 import controller from '../controllers/city';
 import validations from '../validations/city';
 
@@ -12,7 +12,7 @@ const router = express.Router();
  * /city/{id}/state:
  *   get:
  *     tags:
- *     - Address
+ *     - City
  *     summary: Buscar cidades com base em um estado.
  *     parameters:
  *     - in: path

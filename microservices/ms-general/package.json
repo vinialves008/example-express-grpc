@@ -33,7 +33,6 @@
         "axios": "^0.19.2",
         "bootstrap-email": "^1.1.1",
         "config": "^3.3.1",
-        "consign": "^0.1.6",
         "cors": "^2.8.5",
         "cpf_cnpj": "^0.2.0",
         "dotenv": "^8.2.0",
