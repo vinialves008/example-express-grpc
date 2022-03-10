@@ -27,7 +27,7 @@ module.exports = {
             activated: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,
-                defaultValue: true,
+                defaultValue: false,
             },
             blocked: {
                 type: Sequelize.BOOLEAN,
@@ -36,7 +36,7 @@ module.exports = {
             },
             activated_at: {
                 type: Sequelize.DATE,
-                allowNull: false,
+                allowNull: true,
             },
             created_at: {
                 type: Sequelize.DATE,

@@ -16,6 +16,8 @@ class User extends Model {
             password: Sequelize.STRING,
             status: Sequelize.BOOLEAN,
             blocked: Sequelize.BOOLEAN,
+            activated: Sequelize.BOOLEAN,
+            activatedAt: Sequelize.DATE,
         }, {
             sequelize,
         });
