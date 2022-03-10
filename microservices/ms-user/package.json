@@ -49,7 +49,6 @@
         "sequelize": "6.17.0",
         "swagger-jsdoc": "6.1.0",
         "swagger-ui-express": "4.3.0",
-        "witch": "^1.0.3",
         "xml-js": "^1.6.11",
         "yup": "^0.28.5"
     },

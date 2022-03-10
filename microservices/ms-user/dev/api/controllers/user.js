@@ -42,7 +42,7 @@ const fetchUsers = async(params) => {
             include: [{
                 model: UserAddress,
                 as: 'userAddress',
-                attributes: ['id'],
+                attributes: ['id', 'addressesId'],
             }, ],
         });
 
@@ -50,12 +50,9 @@ const fetchUsers = async(params) => {
             users.map(
                 (user) =>
                 new Promise((resolve, reject) =>
-                    clientAddress.FindById({ id: user.id }, async(error, address) => {
+                    clientAddress.FindById({ id: user.userAddress.addressesId }, async(error, address) => {
                         if (!error) {
-                            // const { id: addressesId } = address;
-                            // addresses.push({ addressesId });
                             usersDTO.push(new UserDTO(user, address));
-
                             return resolve(address);
                         }
                         return reject(error);
@@ -70,6 +67,7 @@ const fetchUsers = async(params) => {
         throw new BadRequestException('Erro ao buscar usuários');
     }
 };
+
 const createUsers = async(params) => {
     const saltRounds = 10;
 
@@ -78,17 +76,18 @@ const createUsers = async(params) => {
         grpc.credentials.createInsecure()
     );
     const errors = [];
-    const addresses = [];
+
     const { name, email, password } = params;
     const pass = await bcrypt.hash(password, saltRounds);
 
     const address = await new Promise((resolve, reject) =>
         clientAddress.Create(params.address, async(error, address) => {
             if (!error) {
-                const { id: addressesId } = address;
-                addresses.push({ addressesId });
+                // const { id: addressesId } = address;
+                // addresses.push({ addressesId });
                 resolve(address);
             }
+            console.log(error);
             return reject(error);
         })
     ).catch((err) => {
@@ -99,7 +98,7 @@ const createUsers = async(params) => {
         name,
         email,
         password: pass,
-        addresses,
+        userAddress: { addressesId: address.id },
     }, {
         include: [{
             model: UserAddress,

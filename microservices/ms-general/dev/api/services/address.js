@@ -15,8 +15,14 @@ const List = async({ request }, callback) => {
 };
 
 const FindById = async({ request }, callback) => {
-    const address = await controller.findById(request);
-    callback(false, address);
+    try {
+        const address = await controller.findById(request);
+        callback(false, address);
+
+    } catch (error) {
+        callback(true, {});
+    }
+
 };
 
 module.exports = {
